@@ -10,7 +10,13 @@ let available () =
 
 type file_data
 
-val data : file_data -> string [@@js.get]
+[@@@js.implem let uint8Array_to_js = Obj.magic]
+
+[@@@js.implem let uint8Array_of_js = Obj.magic]
+
+open Js_of_ocaml.Typed_array
+
+val data : file_data -> uint8Array [@@js.get]
 
 val data_uri : file_data -> string [@@js.get "dataURI"]
 
